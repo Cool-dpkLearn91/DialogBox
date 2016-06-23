@@ -1,6 +1,7 @@
 package com.example.devil.customdialogbox;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  */
 public class ItemAdapter extends ArrayAdapter<Items> {
 
+    MainActivity obj = new MainActivity();
 
     public static ArrayList<Items> itemsList;
 
@@ -42,6 +44,7 @@ public class ItemAdapter extends ArrayAdapter<Items> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.custom_list_row, parent, false);
             itemHolder.textView = (TextView) convertView.findViewById(R.id.activity_text);
+            itemHolder.textView.setTypeface(obj.face4);
             itemHolder.imageView = (ImageView) convertView.findViewById(R.id.ivImage);
 
             convertView.setTag(itemHolder);

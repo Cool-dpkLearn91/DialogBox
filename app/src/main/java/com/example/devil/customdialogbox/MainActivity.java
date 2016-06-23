@@ -3,6 +3,7 @@ package com.example.devil.customdialogbox;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,7 +58,14 @@ public class MainActivity extends Activity{
     private Animation slide_in_left, slide_in_right, slide_out_left, slide_out_right;
 
     ArrayAdapter adapter1, adapter2, adapter3;
+
     Button btnDialog;
+
+    Typeface face1;
+
+    Typeface face2;
+    Typeface face3;
+    Typeface face4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,17 +98,29 @@ public class MainActivity extends Activity{
             linearLayout = (LinearLayout)dialog.findViewById(R.id.linearLayout);
             relativeLayout = (RelativeLayout)dialog.findViewById(R.id.relativeCancel);
 
+            face1 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT Bold Italic.ttf");
+            face2 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT Bold.ttf");
+            face3 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT Italic.ttf");
+            face4 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT.ttf");
+
 
             listView1 = (ListView)dialog.findViewById(R.id.lvListView1);
             listView2 = (ListView) dialog.findViewById(R.id.lvListView2);
 
             btnBack = (Button)dialog.findViewById(R.id.lftangry_btn);
+            btnBack.setTypeface(face2);
+
             btnCancel = (Button)dialog.findViewById(R.id.rftangry_btn);
+            btnCancel.setTypeface(face2);
+
             btnDismiss = (Button)dialog.findViewById(R.id.btn_cancel);
+            btnDismiss.setTypeface(face2);
+
 
             tvHeader = (TextView)dialog.findViewById(R.id.tvHeader);
 
             tvHeader.setText("Help us understand the problem.\n what is going on?");
+            tvHeader.setTypeface(face2);
             textView = (TextView) dialog.findViewById(R.id.tvText);
 
             viewFlipper = (ViewFlipper) dialog.findViewById(R.id.flipper);
@@ -128,16 +148,10 @@ public class MainActivity extends Activity{
 
             adapter3 = new ArrayAdapter(getApplication(), R.layout.mytextview, spamSensitive);
 
-
             listView1.setAdapter(adapter);
 
             linearLayout.setVisibility(View.INVISIBLE);
 
-            /*if(viewFlipper.getDisplayedChild()==1){
-                linearLayout.setVisibility(View.VISIBLE);
-                relativeLayout.setVisibility(View.INVISIBLE);
-            }
-*/
             listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -145,6 +159,7 @@ public class MainActivity extends Activity{
                     String s = ItemAdapter.itemsList.get(position).getItemName();
 
                     if (s.equals("I'm not interested in this Pin")) {
+                        textView.setTypeface(face4);
                         textView.setText(s);
                         listView2.setAdapter(adapter2);
                         viewFlipper.setInAnimation(slide_in_left);
@@ -154,6 +169,7 @@ public class MainActivity extends Activity{
 
                     }
                     if (s.equals("It's spam")) {
+                        textView.setTypeface(face4);
                         textView.setText(s);
                         listView2.setAdapter(adapter3);
                         viewFlipper.setInAnimation(slide_in_left);
@@ -162,6 +178,7 @@ public class MainActivity extends Activity{
                         relativeLayout.setVisibility(View.INVISIBLE);
                     }
                     if (s.equals("It displays a sensitive image")) {
+                        textView.setTypeface(face4);
                         textView.setText(s);
                         listView2.setAdapter(adapter3);
                         viewFlipper.setInAnimation(slide_in_left);
