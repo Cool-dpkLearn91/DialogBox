@@ -5,9 +5,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -19,11 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends Activity{
 
@@ -95,8 +91,8 @@ public class MainActivity extends Activity{
 
             }
 
-            linearLayout = (LinearLayout)dialog.findViewById(R.id.linearLayout);
-            relativeLayout = (RelativeLayout)dialog.findViewById(R.id.relativeCancel);
+            linearLayout = (LinearLayout)dialog.findViewById(R.id.activity_main_ll_for_two_buttons);
+            relativeLayout = (RelativeLayout)dialog.findViewById(R.id.activity_main_rl_cancel_only);
 
             face1 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT Bold Italic.ttf");
             face2 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT Bold.ttf");
@@ -104,26 +100,26 @@ public class MainActivity extends Activity{
             face4 = Typeface.createFromAsset(getAssets(),"fonts/Gill Sans MT.ttf");
 
 
-            listView1 = (ListView)dialog.findViewById(R.id.lvListView1);
-            listView2 = (ListView) dialog.findViewById(R.id.lvListView2);
+            listView1 = (ListView)dialog.findViewById(R.id.activity_main_lv_headers);
+            listView2 = (ListView) dialog.findViewById(R.id.activity_main_lv_contents);
 
-            btnBack = (Button)dialog.findViewById(R.id.lftangry_btn);
+            btnBack = (Button)dialog.findViewById(R.id.activity_main_btn_back);
             btnBack.setTypeface(face2);
 
-            btnCancel = (Button)dialog.findViewById(R.id.rftangry_btn);
+            btnCancel = (Button)dialog.findViewById(R.id.activity_main_btn_cancel);
             btnCancel.setTypeface(face2);
 
-            btnDismiss = (Button)dialog.findViewById(R.id.btn_cancel);
+            btnDismiss = (Button)dialog.findViewById(R.id.activity_main_btn_single_cancel);
             btnDismiss.setTypeface(face2);
 
 
-            tvHeader = (TextView)dialog.findViewById(R.id.tvHeader);
+            tvHeader = (TextView)dialog.findViewById(R.id.activity_main_tv_header);
 
             tvHeader.setText("Help us understand the problem.\n what is going on?");
             tvHeader.setTypeface(face2);
-            textView = (TextView) dialog.findViewById(R.id.tvText);
+            textView = (TextView) dialog.findViewById(R.id.activity_main_tv_items_headers);
 
-            viewFlipper = (ViewFlipper) dialog.findViewById(R.id.flipper);
+            viewFlipper = (ViewFlipper) dialog.findViewById(R.id.activity_main_view_flipper);
 
             slide_in_left = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in_left);
             slide_in_right = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_in_right);
