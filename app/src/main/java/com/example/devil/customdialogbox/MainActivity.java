@@ -215,6 +215,7 @@ public class MainActivity extends Activity {
                             linearLayout.setVisibility(View.VISIBLE);
                             relativeLayout.setVisibility(View.INVISIBLE);
                         }
+                        //hello
                     }
                 });
 
