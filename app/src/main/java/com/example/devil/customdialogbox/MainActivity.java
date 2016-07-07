@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -227,7 +226,10 @@ public class MainActivity extends Activity {
 
                         if (context.equalsIgnoreCase("It's disrespectful or offensive")) {
                             tvAbusive.setTypeface(face4);
+                            tvAbusive.setVisibility(View.VISIBLE);
+                            tvInsideHeader.setVisibility(View.VISIBLE);
                             tvAbusive.setText("Me");
+                            tvInsideHeader.setText("Who is being targeted?");
                             tvInsideHeader.setTypeface(face4);
                             viewFlipper.setInAnimation(slide_in_left);
                             viewFlipper.showNext();
@@ -236,6 +238,8 @@ public class MainActivity extends Activity {
                         }
                         if (context.equalsIgnoreCase("Includes private information")) {
                             tvAbusive.setTypeface(face4);
+                            tvAbusive.setVisibility(View.VISIBLE);
+                            tvInsideHeader.setVisibility(View.VISIBLE);
                             tvAbusive.setText("Me");
                             tvInsideHeader.setText("Who owns this private information?");
                             tvInsideHeader.setTypeface(face4);
@@ -246,6 +250,8 @@ public class MainActivity extends Activity {
                         }
                         if (context.equalsIgnoreCase("Includes targeted harassment")) {
                             tvAbusive.setTypeface(face4);
+                            tvAbusive.setVisibility(View.VISIBLE);
+                            tvInsideHeader.setVisibility(View.VISIBLE);
                             tvAbusive.setText("Me");
                             tvInsideHeader.setText("Who is being targeted?");
                             tvInsideHeader.setTypeface(face4);
@@ -256,6 +262,8 @@ public class MainActivity extends Activity {
                         }
                         if (context.equalsIgnoreCase("Threatening violence or physical harm")) {
                             tvAbusive.setTypeface(face4);
+                            tvAbusive.setVisibility(View.VISIBLE);
+                            tvInsideHeader.setVisibility(View.VISIBLE);
                             tvAbusive.setText("Me");
                             tvInsideHeader.setText("Who is being targeted?");
                             tvInsideHeader.setTypeface(face4);
@@ -297,7 +305,6 @@ public class MainActivity extends Activity {
                             linearLayout.setVisibility(View.INVISIBLE);
                             relativeLayout.setVisibility(View.VISIBLE);
                         } else if (viewFlipper.getDisplayedChild() == 2) {
-                            Log.d("flip"," 2");
                             viewFlipper.setInAnimation(slide_in_right);
                             viewFlipper.showPrevious();
                             linearLayout.setVisibility(View.VISIBLE);
