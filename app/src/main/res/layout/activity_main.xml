@@ -8,6 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/activity_dialog_rl1"
         android:background="@drawable/daialog_box_shape">
 
         <TextView
@@ -23,7 +24,7 @@
         <ViewFlipper
             android:id="@+id/activity_main_view_flipper"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:layout_marginTop="60dp">
 
             <RelativeLayout
@@ -34,9 +35,8 @@
                 <ListView
                     android:id="@+id/activity_main_lv_headers"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="285dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:divider="#DCDBDA"
                     android:dividerHeight="1dp" />
@@ -53,6 +53,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:textAlignment="center"
                     android:textSize="20sp" />
 
@@ -156,8 +159,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
                 android:background="@drawable/left_button_shape"
-
-                android:text="Back"
+                android:text="cancel"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
@@ -168,11 +170,10 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-
                 android:layout_marginLeft="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/right_button_shape"
-                android:text="cancel"
+                android:text="back"
                 android:textColor="#000000"
                 android:textSize="20sp" />
         </LinearLayout>

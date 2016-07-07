@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class MainActivity extends Activity {
 
     RelativeLayout relativeLayout;
 
+    RelativeLayout rlDialog;
+
     TextView tvHeader;
 
     TextView tvAbusive, tvInsideHeader;
@@ -70,6 +73,8 @@ public class MainActivity extends Activity {
     Typeface face3;
     Typeface face4;
 
+    String s = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +91,10 @@ public class MainActivity extends Activity {
 
                 listItems = new ArrayList<>();
 
-                iconImage = new int[]{R.drawable.next_new, R.drawable.next_new, R.drawable.next_new, R.drawable.next_new};
+                iconImage = new int[]{R.drawable.next,
+                        R.drawable.next,
+                        R.drawable.next,
+                        R.drawable.next};
 
                 itemsName = new String[]{"I'm not interested in this Pin", "It's spam", "It displays a sensitive image", "It's abusive or harmful"};
 
@@ -101,6 +109,8 @@ public class MainActivity extends Activity {
                 linearLayout = (LinearLayout) dialog.findViewById(R.id.activity_main_ll_for_two_buttons);
                 relativeLayout = (RelativeLayout) dialog.findViewById(R.id.activity_main_rl_cancel_only);
 
+                rlDialog = (RelativeLayout)dialog.findViewById(R.id.activity_dialog_rl1);
+
 
                 face1 = Typeface.createFromAsset(getAssets(), "fonts/Gill Sans MT Bold Italic.ttf");
                 face2 = Typeface.createFromAsset(getAssets(), "fonts/Gill Sans MT Bold.ttf");
@@ -110,11 +120,12 @@ public class MainActivity extends Activity {
 
                 listView1 = (ListView) dialog.findViewById(R.id.activity_main_lv_headers);
                 listView2 = (ListView) dialog.findViewById(R.id.activity_main_lv_contents);
+                listView2.setDivider(null);
 
-                btnBack = (Button) dialog.findViewById(R.id.activity_main_btn_back);
+                btnBack = (Button) dialog.findViewById(R.id.activity_main_btn_cancel);
                 btnBack.setTypeface(face2);
 
-                btnCancel = (Button) dialog.findViewById(R.id.activity_main_btn_cancel);
+                btnCancel = (Button) dialog.findViewById(R.id.activity_main_btn_back);
                 btnCancel.setTypeface(face2);
 
                 btnDismiss = (Button) dialog.findViewById(R.id.activity_main_btn_single_cancel);
@@ -156,8 +167,6 @@ public class MainActivity extends Activity {
                 spamSensitive = new ArrayList<>();
 
                 spamSensitive.addAll(notIntrested);
-                spamSensitive.add("Edit Text");
-
 
                 ItemAdapter adapter = new ItemAdapter(getBaseContext(), listItems);
 
@@ -176,7 +185,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        String s = ItemAdapter.itemsList.get(position).getItemName();
+                        s = ItemAdapter.itemsList.get(position).getItemName();
 
                         if (s.equals("I'm not interested in this Pin")) {
                             textView.setTypeface(face4);
@@ -209,7 +218,9 @@ public class MainActivity extends Activity {
                         if (s.equals("It's abusive or harmful")) {
                             textView.setTypeface(face4);
                             textView.setText("How is this Tweet abusive or harmful?");
+                            textView.setTextSize(19);
                             listView2.setAdapter(adapter4);
+                            listView2.setDividerHeight(1);
                             viewFlipper.setInAnimation(slide_in_left);
                             viewFlipper.showNext();
                             linearLayout.setVisibility(View.VISIBLE);
@@ -224,6 +235,12 @@ public class MainActivity extends Activity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                         String context = listView2.getItemAtPosition(position).toString();
+
+                        if(context.equalsIgnoreCase("Block")){
+                            Toast.makeText(MainActivity.this, "" + s + "  "+ ": Block", Toast.LENGTH_SHORT).show();
+                        }if(context.equalsIgnoreCase("Mute")){
+                            Toast.makeText(MainActivity.this, "" + s + "  "+ ": Mute", Toast.LENGTH_SHORT).show();
+                        }
 
                         if (context.equalsIgnoreCase("It's disrespectful or offensive")) {
                             tvAbusive.setTypeface(face4);
@@ -297,50 +314,49 @@ public class MainActivity extends Activity {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 btnBack.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                                               @Override
+                                               public void onClick(View v) {
 
 
-                        if (viewFlipper.getDisplayedChild() == 0) {
-                            viewFlipper.stopFlipping();
-                            linearLayout.setVisibility(View.INVISIBLE);
-                            relativeLayout.setVisibility(View.VISIBLE);
-                        } else if (viewFlipper.getDisplayedChild() == 2) {
-                            viewFlipper.setInAnimation(slide_in_right);
-                            viewFlipper.showPrevious();
-                            linearLayout.setVisibility(View.VISIBLE);
-                            relativeLayout.setVisibility(View.INVISIBLE);
+                                                   if (viewFlipper.getDisplayedChild() == 0) {
+                                                       viewFlipper.stopFlipping();
+                                                       linearLayout.setVisibility(View.INVISIBLE);
+                                                       relativeLayout.setVisibility(View.VISIBLE);
+                                                   } else if (viewFlipper.getDisplayedChild() == 2) {
+                                                       viewFlipper.setInAnimation(slide_in_right);
+                                                       viewFlipper.showPrevious();
+                                                       linearLayout.setVisibility(View.VISIBLE);
+                                                       relativeLayout.setVisibility(View.INVISIBLE);
+                                                   } else {
+                                                       viewFlipper.setInAnimation(slide_in_right);
+                                                       viewFlipper.showPrevious();
+                                                       linearLayout.setVisibility(View.INVISIBLE);
+                                                       relativeLayout.setVisibility(View.VISIBLE);
 
-                        }else{
-                                viewFlipper.setInAnimation(slide_in_right);
-                                viewFlipper.showPrevious();
-                                linearLayout.setVisibility(View.INVISIBLE);
-                                relativeLayout.setVisibility(View.VISIBLE);
+                                                   }
+                                               }
+                                           }
 
-                            }
-                        }
-                    }
-
-                    );
+                );
                     btnCancel.setOnClickListener(new View.OnClickListener()
 
-                    {
-                        @Override
-                        public void onClick (View v){
-                        dialog.dismiss();
-                    }
-                    }
+                                                 {
+                                                     @Override
+                                                     public void onClick(View v) {
+                                                         dialog.dismiss();
+                                                     }
+                                                 }
 
                     );
 
                     btnDismiss.setOnClickListener(new View.OnClickListener()
 
-                    {
-                        @Override
-                        public void onClick (View v){
-                        dialog.dismiss();
-                    }
-                    }
+                                                  {
+                                                      @Override
+                                                      public void onClick(View v) {
+                                                          dialog.dismiss();
+                                                      }
+                                                  }
 
                     );
 
